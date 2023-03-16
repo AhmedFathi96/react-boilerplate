@@ -1,0 +1,93 @@
+{
+    "$schema": "./node_modules/rome/configuration_schema.json",
+    "formatter": {
+      "enabled": true,
+      "formatWithErrors": true,
+      "indentStyle": "tab",
+      "indentSize": 2,
+      "lineWidth": 120
+    },
+    "javascript": {
+      "formatter": {
+        "quoteStyle": "single",
+        "quoteProperties": "asNeeded",
+        "trailingComma": "all",
+        "semicolons": "asNeeded"
+      }
+    },
+    "linter": {
+      "enabled": true,
+      "rules": {
+        "recommended": false,
+        "a11y": null,
+        "complexity": {
+          "noExtraBooleanCast": "error",
+          "noMultipleSpacesInRegularExpressionLiterals": "error",
+          "useFlatMap": "error",
+          "useOptionalChain": "error",
+          "useSimplifiedLogicExpression": "error"
+        },
+        "correctness": {
+          "noConstAssign": "error",
+          "noEmptyPattern": "error",
+          "noNewSymbol": "error",
+          "noUndeclaredVariables": "off",
+          "noUnnecessaryContinue": "error",
+          "noUnreachable": "error",
+          "noUnusedVariables": "error",
+          "useValidForDirection": "error"
+        },
+        "performance": {
+          "noDelete": "error"
+        },
+        "security": null,
+        "style": {
+          "noArguments": "error",
+          "noNegationElse": "error",
+          "noUnusedTemplateLiteral": "error",
+          "useBlockStatements": "error",
+          "useSingleVarDeclarator": "error",
+          "useTemplate": "error",
+          "useWhile": "error"
+        },
+        "suspicious": {
+          "noAsyncPromiseExecutor": "error",
+          "noCatchAssign": "error",
+          "noCompareNegZero": "error",
+          "noDebugger": "error",
+          "noDoubleEquals": "error",
+          "noDuplicateParameters": "error",
+          "noExplicitAny": "off",
+          "noFunctionAssign": "error",
+          "noImportAssign": "error",
+          "noLabelVar": "error",
+          "noShadowRestrictedNames": "error",
+          "noSparseArray": "error",
+          "noUnsafeNegation": "error",
+          "useValidTypeof": "error"
+        },
+        "nursery": {
+          "noBannedTypes": "error",
+          "noConditionalAssignment": "error",
+          "noConstEnum": "error",
+          "noConstructorReturn": "error",
+          "noDuplicateObjectKeys": "error",
+          "noEmptyInterface": "error",
+          "noExtraNonNullAssertion": "error",
+          "noInvalidConstructorSuper": "error",
+          "noRestrictedGlobals": "error",
+          "noSetterReturn": "error",
+          "noStringCaseMismatch": "error",
+          "noUnsafeFinally": "error",
+          "noVar": "error",
+          "noVoidTypeReturn": "error",
+          "useCamelCase": "error",
+          "useConst": "error",
+          "useDefaultParameterLast": "error",
+          "useEnumInitializers": "error",
+          "useExponentiationOperator": "error",
+          "useNumericLiterals": "error"
+        }
+      }
+    }
+  }
