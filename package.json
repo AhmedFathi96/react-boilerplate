@@ -57,7 +57,7 @@
       "rome check"
     ],
     "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
-      "rome formate --write"
+      "rome format --write"
     ]
   },
   "packageManager": "yarn@1.22.18"
