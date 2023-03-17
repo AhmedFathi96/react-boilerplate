@@ -6,6 +6,8 @@ export interface ITodo {
 }
 export interface ITodoState {
 	isLoading: boolean
+	hasError: boolean
+	error: string
 	todos: ITodo[]
 }
 

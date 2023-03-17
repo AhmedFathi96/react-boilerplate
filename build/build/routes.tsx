@@ -1,28 +1,26 @@
-import { Suspense, lazy } from 'react'
-import type { RouteObject } from 'react-router'
-import MainLayout from './layouts/mainLayout'
-
-const Loadable = (Component: any) => (props: JSX.IntrinsicAttributes) =>
-	(
-		<Suspense fallback={<Todo />}>
-			<Component {...props} />
-		</Suspense>
-	)
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import Todo from './features/todo'
+import AddTodo from './features/todo/components/addTodo'
+import ListTodo from './features/todo/components/listTodo'
 
 // Import your page components
-const Todo = Loadable(lazy(() => import('./features/todo')))
+// const TodoComponent = React.lazy(() => import('./features/todo'))
 
-const routes: RouteObject[] = [
+const routes = createBrowserRouter([
 	{
-		path: '*',
-		element: <MainLayout />,
-		children: [
-			{
-				index: true,
-				element: <Todo />,
-			},
-		],
+		path: '/',
+		element: <Todo />,
 	},
-]
-
-export default routes
+	{
+		path: '/add-todo',
+		element: <AddTodo />,
+	},
+	{
+		path: '/list-todo',
+		element: <ListTodo />,
+	},
+])
+function Router() {
+	return <RouterProvider router={routes} />
+}
+export default Router

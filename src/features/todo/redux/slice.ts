@@ -1,9 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { ITodo, ITodoState } from '../types'
-import { getAllTodosThunk } from './thunks'
+import { createTodoThunk } from './createTodoThunk'
+import { deleteTodoThink } from './deleteTodoThunk'
+import { getAllTodosThunk } from './getAllTodosThunk'
 
 const initialState = {
 	isLoading: false,
+	hasError: false,
+	error: '',
 	todos: [],
 } as ITodoState
 
@@ -14,7 +18,8 @@ const todoSlice = createSlice({
 		addTodo(state, action: PayloadAction<ITodo>) {
 			state.todos.push(action.payload)
 		},
-		removeTodo(state, action: PayloadAction<number>) {
+		deleteTodo(state, action: PayloadAction<number>) {
+			console.log('deleteTodo reducer=======================>')
 			state.todos = state.todos.filter((todo) => todo.id !== action.payload)
 		},
 		toggleIsTodoListDataLoaded(state, action: PayloadAction<boolean>) {
@@ -22,11 +27,33 @@ const todoSlice = createSlice({
 		},
 	},
 	extraReducers: (builder) => {
-		builder.addCase(getAllTodosThunk.fulfilled, (state, action: PayloadAction<ITodo[]>) => {
-			state.todos = action.payload
-		})
+		builder
+			.addCase(getAllTodosThunk.fulfilled, (state, action: PayloadAction<ITodo[]>) => {
+				state.todos = action.payload
+				state.hasError = false
+				state.isLoading = false
+			})
+			.addCase(getAllTodosThunk.pending, (state) => {
+				state.hasError = false
+				state.isLoading = true
+			})
+			.addCase(getAllTodosThunk.rejected, (state, action) => {
+				state.hasError = true
+				state.isLoading = false
+				state.error = action.error.message ?? 'An error occurred.'
+			})
+			.addCase(createTodoThunk.fulfilled, (state, action: PayloadAction<ITodo>) => {
+				state.todos.push(action.payload)
+				state.hasError = false
+				state.isLoading = false
+			})
+			.addCase(deleteTodoThink.fulfilled, (state, action: PayloadAction<ITodo>) => {
+				state.todos = state.todos.filter((todo) => todo.id !== action.payload.id)
+				state.hasError = false
+				state.isLoading = false
+			})
 	},
 })
 
-export const { addTodo, removeTodo, toggleIsTodoListDataLoaded } = todoSlice.actions
+export const { addTodo, deleteTodo, toggleIsTodoListDataLoaded } = todoSlice.actions
 export default todoSlice.reducer

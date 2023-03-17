@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Todo from './features/todo'
 import AddTodo from './features/todo/components/addTodo'
 import ListTodo from './features/todo/components/listTodo'
@@ -10,17 +10,17 @@ const routes = createBrowserRouter([
 	{
 		path: '/',
 		element: <Todo />,
-		children: [
-			{
-				path: 'add-todo',
-				element: <AddTodo />,
-			},
-			{
-				path: 'list-todo',
-				element: <ListTodo />,
-			},
-		],
+	},
+	{
+		path: '/add-todo',
+		element: <AddTodo />,
+	},
+	{
+		path: '/list-todo',
+		element: <ListTodo />,
 	},
 ])
-
-export default routes
+function Router() {
+	return <RouterProvider router={routes} />
+}
+export default Router

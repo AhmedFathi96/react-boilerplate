@@ -1,21 +1,23 @@
-import React, { useCallback, useEffect } from 'react'
+import { Alert } from '@mui/material'
+import React, { useEffect } from 'react'
+import { Outlet } from 'react-router-dom'
 import { useAppDispatch } from '../../hooks/reduxHooks'
-import { getAllTodosThunk } from './redux/thunks'
-import styles from './styles.module.scss'
+import { getAllTodosThunk } from './redux/getAllTodosThunk'
+// import styles from './styles.module.scss'
 
 const TodoList: React.FC = () => {
 	const dispatch = useAppDispatch()
-	// const { todos } = useAppSelector((state) => state.todo)
-	console.log('TodoList==================>')
 	// rome-ignore lint/nursery/useExhaustiveDependencies: <explanation>
-	const memoizedFetchData = useCallback(() => {
+	useEffect(() => {
 		dispatch(getAllTodosThunk())
 	}, [])
 
-	useEffect(() => {
-		memoizedFetchData()
-	}, [memoizedFetchData])
-	return <h1 className={styles.header}>Hello from Todo-List app</h1>
+	return (
+		<div>
+			<Alert severity="info">This is an info alert — check it out!</Alert>
+			<Outlet />
+		</div>
+	)
 }
 
 export default TodoList

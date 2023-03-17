@@ -23,12 +23,30 @@ module.exports = {
 				use: ['style-loader', 'css-loader', 'sass-loader'],
 			},
 			{
+				test: /\.css$/,
+				use: ['style-loader', 'css-loader'],
+				include: [path.resolve(__dirname, 'src/fonts')],
+			},
+			{
 				test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
 				type: 'asset/resource',
 			},
 			{
 				test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
 				type: 'asset/inline',
+			},
+			{
+				test: /\.(woff|woff2|eot|ttf|otf)$/i,
+				use: [
+					{
+						loader: 'url-loader',
+						options: {
+							limit: 8192, // or any other limit you want to set
+							fallback: require.resolve('file-loader'),
+							name: 'static/fonts/[name].[hash:8].[ext]',
+						},
+					},
+				],
 			},
 		],
 	},

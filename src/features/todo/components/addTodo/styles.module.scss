@@ -1,0 +1,14 @@
+.formWrapper{
+    width: 50%;
+    margin: 2rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .inputField{
+        width: 40%;
+        margin: 1rem 0;
+    }
+    .button{
+        height: 56px;
+    }
+}

@@ -1,11 +1,13 @@
 export interface ITodo {
-	id: number
+	id?: number
 	todo: string
 	completed: boolean
 	userId: number
 }
 export interface ITodoState {
 	isLoading: boolean
+	hasError: boolean
+	error: string
 	todos: ITodo[]
 }
 

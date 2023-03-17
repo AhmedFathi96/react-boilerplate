@@ -1,14 +1,13 @@
-import React from 'react'
-import { useRoutes } from 'react-router-dom'
 // import logo from '../public/assets/images/image.jpeg'
 import './App.scss'
-import routes from './routes'
-
+import '@fontsource/roboto/300.css'
+import '@fontsource/roboto/400.css'
+import '@fontsource/roboto/500.css'
+import '@fontsource/roboto/700.css'
 function App() {
 	console.log('App==================>')
 
-	const content = useRoutes(routes)
-	return content
+	return <div className="App">s</div>
 }
 
 export default App
